@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.nasahacker.promodoyou.ui.component.TimeSettings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,6 +31,9 @@ fun SettingsScreen(controller: NavHostController) {
     }) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {
+
+            TimeSettings(label = "Work Time", value = 25, onIncrement = {}, onDecrement = {})
+            TimeSettings(label = "Break Time", value = 5, onIncrement = {}, onDecrement = {})
 
 
         }

@@ -33,38 +33,47 @@ fun HomeScreen(modifier: Modifier = Modifier, controller: NavHostController) {
 
     var isBreak by remember { mutableStateOf(false) }
     var isPlay by remember { mutableStateOf(false) }
+    var time by remember { mutableStateOf("25:00") }
+    var type by remember { mutableStateOf("Work") }
 
     Box(modifier = modifier.fillMaxSize()) {
         StatusCard(
             modifier = Modifier
                 .padding(45.dp)
                 .align(Alignment.TopCenter),
-            R.drawable.clock_ic,
-            "Work"
+            if (!isBreak) R.drawable.clock_ic else R.drawable.break_ic,
+            type
         )
 
 
-        TimerText(time = "25:00", modifier = Modifier.align(Alignment.Center))
+        TimerText(time = time, modifier = Modifier.align(Alignment.Center))
 
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 48.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
+                .padding(bottom = 48.dp), horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             MenuButton(iconRes = R.drawable.settings_ic, onClick = {
                 controller.navigate("settings")
             })
-            MenuButton(
-                iconRes = if (!isPlay) R.drawable.play_ic else R.drawable.pause_ic,
+            MenuButton(iconRes = if (!isPlay) R.drawable.play_ic else R.drawable.pause_ic,
                 onClick = { isPlay = !isPlay })
             MenuButton(iconRes = R.drawable.stop_ic, onClick = {})
 
-            MenuButton(
-                iconRes = if (!isBreak) R.drawable.switch_right else R.drawable.switch_left,
-                onClick = { isBreak = !isBreak })
+            MenuButton(iconRes = if (!isBreak) R.drawable.switch_right else R.drawable.switch_left,
+                onClick = {
+                    isBreak = !isBreak
+                    if (isBreak) {
+                        time = "5:00"
+                        type = "Break"
+                    } else {
+                        time = "25:00"
+                        type = "Work"
+                    }
+
+                })
 
         }
     }

@@ -7,21 +7,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.nasahacker.promodoyou.ui.navigation.AppNavHost
-import com.nasahacker.promodoyou.ui.screen.HomeScreen
-import com.nasahacker.promodoyou.ui.theme.PromodoYouTheme
+import com.nasahacker.promodoyou.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            PromodoYouTheme {
+            AppTheme  {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     AppNavHost(
@@ -37,7 +35,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun PreviewHomeScreen() {
-    PromodoYouTheme {
+    AppTheme {
         val navController = rememberNavController()
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
             AppNavHost(
